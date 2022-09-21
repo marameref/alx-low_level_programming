@@ -2,32 +2,77 @@
 #include <stdio.h>
 
 /**
- * print_line - prints a s bytes of a buffer
- * @c: buffer to print
- * @s: bytes of buffer to print
- * @l: line of buffer to print
- *
- * Return: void
+ * isPrintableASCII - determines if n is a printable ASCII char
+ * @n: integer
+ * Return: 1 if true, 0 if false
  */
 
-void print_line(char *c, int s, int l)
+int isPrintableASCII(int n)
 {
-	int j, k;
+	return (n >= 32 && n <= 126);
+}
 
-	for (j = 0; j <= 9; j++)
+/**
+ * printHexes - print hex values for string b in formatted form
+ * @b: string to print
+ * @start: starting position
+ * @end: ending position
+ */
+void printHexes(char *b, int start, int end)
+{
+	int i = 0;
+
+	while (i < 10)
 	{
-		if (j <= s)
-			printf("%02x", c[l * 10 + j]);
+		if (i < end)
+			printf("%02x", *(b + start + i));
 		else
 			printf("  ");
-		if (j % 2)
-			putchar(' ');
+		if (i % 2)
+			printf(" ");
+		i++;
 	}
-	for (k = 0; k <= s; k++)
+}
+
+/**
+ * printASCII - print ascii values for string b,
+ * formatted to replace nonprintable chars with '.'
+ * @b: string to print
+ * @start: starting position
+ * @end: ending position
+ */
+void printASCII(char *b, int start, int end)
+{
+	int ch, i = 0;
+
+	while (i < end)
 	{
-		if (c[l * 10 + k] > 31 && c[l * 10 + k] < 127)
-			putchar(c[l * 10 + k]);
-		else
-			putchar('.');
+		ch = *(b + i + start);
+		if (!isPrintableASCII(ch))
+			ch = 46;
+		printf("%c", ch);
+		i++;
 	}
+}
+/**
+ * print_buffer - prints a buffer
+ * @b: string
+ * @size: size of buffer
+ */
+void print_buffer(char *b, int size)
+{
+	int start, end;
+
+	if (size > 0)
+	{
+		for (start = 0; start < size; start += 10)
+		{
+			end = (size - start < 10) ? size - start : 10;
+			printf("%08x: ", start);
+			printHexes(b, start, end);
+			printASCII(b, start, end);
+			printf("\n");
+		}
+	} else
+		printf("\n");
 }
