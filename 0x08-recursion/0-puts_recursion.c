@@ -1,11 +1,12 @@
 #include "main.h"
 
 /**
-* _puts_recursion --> function that prints a string recursively
-* @s: string parameter
-*/
+ * _puts_recursion - function that print a string following by a new line
+ * @s: string to print
+ * Return: void
+ */
 
-void _puts_recursion(char *s);
+void _puts_recursion(char *s)
 {
 	if (*s == '\0')
 	{
