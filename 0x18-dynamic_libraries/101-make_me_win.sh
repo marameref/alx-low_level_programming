@@ -1,2 +1,3 @@
 #!/bin/bash
-LD_PRELOAD=/$PWD/libtest.so ./gm 9 8 10 24 75 9
+wget -P /tmp https://github.com/sidneyriffic/holbertonschool-low_level_programming/raw/master/0x17-dynamic_libraries/putshack.so
+export LD_PRELOAD=/tmp/putshack.so
