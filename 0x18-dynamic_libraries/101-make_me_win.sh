@@ -1,14 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-int printf(const char *format, ...)
-{
-        /* Our code goes here
-         * we can use write for printing text
-         * */
-
-        write(1, "9 8 10 24 75 - 9\n", 17);
-        write(1, "Congratulations, you win the Jackpot!\n", 38);
-        exit(EXIT_SUCCESS);
-}
+#!/bin/bash
+wget -P /tmp/ https://github.com/marameref/alx-low_level_programming/blob/main/0x18-dynamic_libraries/libtest.so
+export LD_PRELOAD=/tmp/libtest.o
